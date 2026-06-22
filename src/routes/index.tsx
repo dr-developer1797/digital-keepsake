@@ -766,6 +766,7 @@ function BirthdayPage() {
       <FunFacts />
       <Future />
       <Surprise />
+      <MemoryCardMaker />
       <FinalMessage />
     </div>
   );
