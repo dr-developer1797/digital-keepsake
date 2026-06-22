@@ -7,6 +7,7 @@ import {
   Smile, Shield, Laugh, HandHeart, Brain, Rocket, MapPin,
   Plane, Mountain, Utensils, BookOpen, Sun, Moon, X, ChevronDown,
 } from "lucide-react";
+import { MemoryCardMaker } from "@/components/MemoryCardMaker";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -765,6 +766,7 @@ function BirthdayPage() {
       <FunFacts />
       <Future />
       <Surprise />
+      <MemoryCardMaker />
       <FinalMessage />
     </div>
   );
