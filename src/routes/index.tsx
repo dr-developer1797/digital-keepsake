@@ -12,9 +12,9 @@ import { MemoryCardMaker } from "@/components/MemoryCardMaker";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Happy Birthday, [Her Name] — A Letter in Pixels" },
+      { title: "Happy Birthday, Saloniii — A Letter in Pixels" },
       { name: "description", content: "A handcrafted digital memory book for someone truly special." },
-      { property: "og:title", content: "Happy Birthday, [Her Name]" },
+      { property: "og:title", content: "Happy Birthday, Saloniii" },
       { property: "og:description", content: "A handcrafted digital memory book for someone truly special." },
     ],
   }),
@@ -148,7 +148,7 @@ function Hero() {
         >
           Happy Birthday,
           <br />
-          <span className="gradient-text italic">[Her Name]</span>
+          <span className="gradient-text italic">Saloniii</span>
           <span className="ml-2 inline-block animate-pulse-glow">🎉</span>
         </motion.h1>
 
@@ -193,10 +193,10 @@ function Hero() {
 /*  ABOUT                                                            */
 /* ---------------------------------------------------------------- */
 const aboutItems = [
-  { icon: Heart, label: "Name", value: "[Her Name]" },
-  { icon: Coffee, label: "Favorite Things", value: "Sunday mornings, oat lattes, vinyl records, golden-hour walks" },
-  { icon: Star, label: "Dreams", value: "To travel the world, write a book, and own a tiny cottage by the sea" },
-  { icon: Smile, label: "Fun Fact", value: "Can quote every line of her favorite movie, even at 3am" },
+  { icon: Heart, label: "Name", value: "Saloniii" },
+  { icon: Coffee, label: "Favorite Things", value: "Long walks, beach days, surprise dates, KitKat, soft toys, and Zara... ofc" },
+  { icon: Star, label: "Dreams", value: "To become a data analyst and make her father proud" },
+  { icon: Smile, label: "Fun Fact", value: "She can school you anytime, anywhere" },
 ];
 
 function About() {
@@ -735,7 +735,7 @@ function FinalMessage() {
           <div className="h-px w-16 bg-background/30" />
           <p className="text-sm text-background/60">Made with</p>
           <Heart className="h-4 w-4 fill-primary text-primary" />
-          <p className="font-script text-2xl text-background">by [Your Name]</p>
+          <p className="font-script text-2xl text-background">by me</p>
         </div>
       </motion.div>
     </section>

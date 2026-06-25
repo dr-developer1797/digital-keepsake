@@ -10,7 +10,7 @@ const GRADIENTS = [
 ];
 
 export function MemoryCardMaker() {
-  const [name, setName] = useState("[Her Name]");
+  const [name, setName] = useState("Saloniii");
   const [message, setMessage] = useState("To the most extraordinary human I know — happy birthday.");
   const [gradient, setGradient] = useState(GRADIENTS[0]);
   const previewRef = useRef<HTMLDivElement>(null);
