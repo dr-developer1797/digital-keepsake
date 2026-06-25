@@ -501,7 +501,7 @@ const facts = [
   { front: "📞 Call par aa jao.", back: "Typing was optional" },
   { front: "😂 Aavai kuch bhi.", back: "One of the oldest phrases in our chat." },
   { front: "👟 Samba Nahi Chahiye.", back: "The search lasted longer than the decision." },
-  { front: "💬 Kkrh??", back: "Probably the most frequently asked question." }
+  { front: "💬 Kkrh??", back: "Probably the most frequently asked question." },
   { front: "🍫 KitKat Drink", back: "Who knew KitKat could become an entire conversation?" }
 ];
 
