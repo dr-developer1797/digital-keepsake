@@ -491,12 +491,18 @@ function BirthdayWish() {
 /*  FUN FACTS (flip cards)                                           */
 /* ---------------------------------------------------------------- */
 const facts = [
-  { front: "Inside Joke #1", back: "“The pigeon incident.” Enough said." },
-  { front: "Favorite Snack", back: "Salt & vinegar chips at 11pm, no exceptions." },
-  { front: "Our Song", back: "That one we played on loop the whole summer." },
-  { front: "Favorite Movie", back: "The one she's seen 47 times and still cries at." },
-  { front: "Comfort Order", back: "Oat latte, extra hot, with the little cinnamon thing." },
-  { front: "Quirky Fact", back: "Names every plant. Talks to them. They listen." },
+  { front: "🌙 Yah mat bolna 'Sone ja rahi hu'.", back: "(I already know the answer)" },
+  { front: "👑 Ma Lady", back: "Started as My Lady,Ended with 'What is this ma lady?' 😂" },
+  { front: "👸 Queen Victoria", back: "Ma lady bola toh sach ma Queen Victoria jaisa harkat karna lagi." },
+  { front: "☕ Coffee Treaty", back: "Her: Stop sipping coffee. Me: 'Coffee is the only thing keeping me alive.'" },
+  { front: "🤍 Pagal.", back: "At this point, it's basically our second names." },
+  { front: "🎬 Movie Rule", back: "'Kuch bhi faltu movie nahi chahiye.' 'It should teach something.'" },
+  { front: "😴 Good Night...", back: "...which somehow always became another conversation." },
+  { front: "📞 Call par aa jao.", back: "Typing was optional" },
+  { front: "😂 Aavai kuch bhi.", back: "One of the oldest phrases in our chat." },
+  { front: "👟 Samba Nahi Chahiye.", back: "The search lasted longer than the decision." },
+  { front: "💬 Kkrh??", back: "Probably the most frequently asked question." }
+  { front: "🍫 KitKat Drink", back: "Who knew KitKat could become an entire conversation?" }
 ];
 
 function FunFacts() {
