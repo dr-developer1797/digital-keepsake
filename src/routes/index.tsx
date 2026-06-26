@@ -28,8 +28,25 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { MemoryCardMaker } from "@/components/MemoryCardMaker";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+
+/* Gallery photo imports */
+import imgK1 from "../../assets/K1.jpg";
+import imgK2 from "../../assets/K2.jpg";
+import imgK3 from "../../assets/K3.jpg";
+import imgK4 from "../../assets/K4.jpg";
+import imgK5 from "../../assets/K5.jpg";
+import imgK6 from "../../assets/K6.jpg";
+import imgK7 from "../../assets/K7.jpg";
+import imgK8 from "../../assets/K8.jpg";
+import imgK9 from "../../assets/K9.jpg";
+import imgK10 from "../../assets/K10.jpg";
+import imgK11 from "../../assets/K11.jpg";
+import imgK12 from "../../assets/K12.jpg";
+import imgK13 from "../../assets/K13.jpg";
+import imgK14 from "../../assets/K14.jpg";
+import imgK15 from "../../assets/K15.jpg";
+import imgK16 from "../../assets/K16.jpg";
+import imgK17 from "../../assets/K17.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -441,10 +458,28 @@ function Reasons() {
 /* ---------------------------------------------------------------- */
 /*  GALLERY                                                          */
 /* ---------------------------------------------------------------- */
-function Gallery() {
-  const photos = useQuery(api.gallery.listPhotos);
-  const [open, setOpen] = useState<number | null>(null);
+const galleryItems = [
+  { id: 0, src: imgK1, label: "K1" },
+  { id: 1, src: imgK2, label: "K2" },
+  { id: 2, src: imgK16, label: "K16" },
+  { id: 3, src: imgK3, label: "K3" },
+  { id: 4, src: imgK4, label: "K4" },
+  { id: 5, src: imgK5, label: "K5" },
+  { id: 6, src: imgK6, label: "K6" },
+  { id: 7, src: imgK10, label: "K10" },
+  { id: 8, src: imgK11, label: "K11" },
+  { id: 9, src: imgK12, label: "K12" },
+  { id: 10, src: imgK7, label: "K7" },
+  { id: 11, src: imgK8, label: "K8" },
+  { id: 12, src: imgK9, label: "K9" },
+  { id: 13, src: imgK17, label: "K17" },
+  { id: 14, src: imgK14, label: "K14" },
+  { id: 15, src: imgK15, label: "K15" },
+  { id: 16, src: imgK13, label: "K13" },
+];
 
+function Gallery() {
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section className="relative py-32" style={{ background: "var(--gradient-warm)" }}>
       <div className="mx-auto max-w-7xl px-6">
@@ -454,44 +489,31 @@ function Gallery() {
           subtitle="Click any photo to zoom in."
         />
 
-        {photos === undefined ? (
-          /* Loading skeleton */
-          <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
-            {Array.from({ length: 17 }).map((_, i) => (
-              <div
-                key={i}
-                className="block w-full overflow-hidden rounded-2xl bg-primary/10 animate-pulse"
-                style={{ height: [220, 320, 280, 360, 240, 300][i % 6] }}
+        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
+          {galleryItems.map((g) => (
+            <motion.button
+              key={g.id}
+              onClick={() => setOpen(g.id)}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: (g.id % 6) * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              className="block w-full overflow-hidden rounded-2xl shadow-card"
+            >
+              <img
+                src={g.src}
+                alt={g.label}
+                className="h-full w-full object-cover"
+                loading="lazy"
               />
-            ))}
-          </div>
-        ) : (
-          <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
-            {photos.map((g, i) => (
-              <motion.button
-                key={g._id}
-                onClick={() => setOpen(i)}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: (i % 6) * 0.05 }}
-                whileHover={{ scale: 1.02 }}
-                className="block w-full overflow-hidden rounded-2xl shadow-card"
-              >
-                <img
-                  src={g.url ?? undefined}
-                  alt={g.label}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </motion.button>
-            ))}
-          </div>
-        )}
+            </motion.button>
+          ))}
+        </div>
       </div>
 
       <AnimatePresence>
-        {open !== null && photos && photos[open] && (
+        {open !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -514,8 +536,8 @@ function Gallery() {
                 <X className="h-5 w-5" />
               </button>
               <img
-                src={photos[open].url ?? undefined}
-                alt={photos[open].label}
+                src={galleryItems[open].src}
+                alt={galleryItems[open].label}
                 className="w-full object-contain"
               />
             </motion.div>
@@ -876,7 +898,7 @@ function FinalMessage() {
           <div className="h-px w-16 bg-background/30" />
           <p className="text-sm text-background/60">Made with</p>
           <Heart className="h-4 w-4 fill-primary text-primary" />
-          <p className="font-script text-2xl text-background">by me</p>
+          <p className="font-script text-2xl text-background">by Puchhka</p>
         </div>
       </motion.div>
     </section>
