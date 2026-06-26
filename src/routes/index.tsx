@@ -239,11 +239,11 @@ function About() {
 /*  TIMELINE                                                         */
 /* ---------------------------------------------------------------- */
 const memories = [
-  { date: "Spring 2018", title: "The day we met", story: "It was loud, it was bright, and somehow we ended up talking for hours. The beginning of something quietly important." },
-  { date: "Summer 2019", title: "Our first road trip", story: "Three playlists, two wrong turns, one unforgettable sunset over a town whose name we still can't pronounce." },
-  { date: "Winter 2020", title: "The year we held on", story: "When the world went quiet, you made mine feel full. Phone calls past midnight, packages in the mail, never alone." },
-  { date: "Autumn 2022", title: "That tiny café", story: "We promised to come back every year. The pastries weren't even that good. We still talk about it constantly." },
-  { date: "Today", title: "Another candle, another chapter", story: "Here's to all the years behind us and every soft, golden one still ahead." },
+  { date: "🌱 Chapter 1", title: "The Stranger", story: "Two people who had absolutely no idea they'd one day have enough inside jokes to build an entire website." },
+  { date: "💬 Chapter 2", title: "One Message Became Hundreds", story: "It started with a simple conversation. Somehow... neither of us stopped replying." },
+  { date: "☕ Chapter 3", title: "Twilight Conversations", story: "When the world went quiet, you made mine feel full. Phone calls past midnight, packages in the mail, never alone." },
+  { date: "😂 Chapter 4", title: "The Era of Inside", story: "Ma Lady Queen Victoria KitKat Paglu Samba Pagal...Nobody else gets them. That's the point.." },
+  { date: "✨ Chapter 5", title: "Another candle, another chapter & today", story: "A birthday. A website. A reminder that someone out there remembers even the smallest things about you." },
 ];
 
 function Timeline() {
