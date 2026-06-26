@@ -3,19 +3,47 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
 import confetti from "canvas-confetti";
 import {
-  Heart, Sparkles, Star, Cake, Gift, Music, Coffee, Camera,
-  Smile, Shield, Laugh, HandHeart, Brain, Rocket, MapPin,
-  Plane, Mountain, Utensils, BookOpen, Sun, Moon, X, ChevronDown,
+  Heart,
+  Sparkles,
+  Star,
+  Cake,
+  Gift,
+  Music,
+  Coffee,
+  Camera,
+  Smile,
+  Shield,
+  Laugh,
+  HandHeart,
+  Brain,
+  Rocket,
+  MapPin,
+  Plane,
+  Mountain,
+  Utensils,
+  BookOpen,
+  Sun,
+  Moon,
+  X,
+  ChevronDown,
 } from "lucide-react";
 import { MemoryCardMaker } from "@/components/MemoryCardMaker";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Happy Birthday, Saloniii — A Letter in Pixels" },
-      { name: "description", content: "A handcrafted digital memory book for someone truly special." },
+      {
+        name: "description",
+        content: "A handcrafted digital memory book for someone truly special.",
+      },
       { property: "og:title", content: "Happy Birthday, Saloniii" },
-      { property: "og:description", content: "A handcrafted digital memory book for someone truly special." },
+      {
+        property: "og:description",
+        content: "A handcrafted digital memory book for someone truly special.",
+      },
     ],
   }),
   component: BirthdayPage,
@@ -97,7 +125,15 @@ function Stars({ count = 60 }: { count?: number }) {
 /* ---------------------------------------------------------------- */
 /*  REUSABLE SECTION WRAPPER                                         */
 /* ---------------------------------------------------------------- */
-function SectionTitle({ kicker, title, subtitle }: { kicker: string; title: string; subtitle?: string }) {
+function SectionTitle({
+  kicker,
+  title,
+  subtitle,
+}: {
+  kicker: string;
+  title: string;
+  subtitle?: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -125,7 +161,10 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative flex min-h-screen items-center justify-center overflow-hidden gradient-warm">
+    <section
+      ref={ref}
+      className="relative flex min-h-screen items-center justify-center overflow-hidden gradient-warm"
+    >
       <div className="absolute inset-0" style={{ background: "var(--gradient-glow)" }} />
       <Particles count={30} />
 
@@ -194,7 +233,11 @@ function Hero() {
 /* ---------------------------------------------------------------- */
 const aboutItems = [
   { icon: Heart, label: "Name", value: "Saloniii" },
-  { icon: Coffee, label: "Favorite Things", value: "Long walks, beach days, surprise dates, KitKat, soft toys, and Zara... ofc" },
+  {
+    icon: Coffee,
+    label: "Favorite Things",
+    value: "Long walks, beach days, surprise dates, KitKat, soft toys, and Zara... ofc",
+  },
   { icon: Star, label: "Dreams", value: "To become a data analyst and make her father proud" },
   { icon: Smile, label: "Fun Fact", value: "She can school you anytime, anywhere" },
 ];
@@ -239,11 +282,35 @@ function About() {
 /*  TIMELINE                                                         */
 /* ---------------------------------------------------------------- */
 const memories = [
-  { date: "🌱 Chapter 1", title: "The Stranger", story: "Two people who had absolutely no idea they'd one day have enough inside jokes to build an entire website." },
-  { date: "💬 Chapter 2", title: "One Message Became Hundreds", story: "It started with a simple conversation. Somehow... neither of us stopped replying." },
-  { date: "☕ Chapter 3", title: "Twilight Conversations", story: "When the world went quiet, you made mine feel full. Phone calls past midnight, packages in the mail, never alone." },
-  { date: "😂 Chapter 4", title: "The Era of Inside", story: "Ma Lady Queen Victoria KitKat Paglu Samba Pagal...Nobody else gets them. That's the point.." },
-  { date: "✨ Chapter 5", title: "Another candle, another chapter & today", story: "A birthday. A website. A reminder that someone out there remembers even the smallest things about you." },
+  {
+    date: "🌱 Chapter 1",
+    title: "The Stranger",
+    story:
+      "Two people who had absolutely no idea they'd one day have enough inside jokes to build an entire website.",
+  },
+  {
+    date: "💬 Chapter 2",
+    title: "One Message Became Hundreds",
+    story: "It started with a simple conversation. Somehow... neither of us stopped replying.",
+  },
+  {
+    date: "☕ Chapter 3",
+    title: "Twilight Conversations",
+    story:
+      "When the world went quiet, you made mine feel full. Phone calls past midnight, packages in the mail, never alone.",
+  },
+  {
+    date: "😂 Chapter 4",
+    title: "The Era of Inside",
+    story:
+      "Ma Lady Queen Victoria KitKat Paglu Samba Pagal...Nobody else gets them. That's the point..",
+  },
+  {
+    date: "✨ Chapter 5",
+    title: "Another candle, another chapter & today",
+    story:
+      "A birthday. A website. A reminder that someone out there remembers even the smallest things about you.",
+  },
 ];
 
 function Timeline() {
@@ -277,7 +344,10 @@ function TimelineItem({ item, index }: { item: (typeof memories)[number]; index:
   const isLeft = index % 2 === 0;
 
   return (
-    <div ref={ref} className={`relative flex flex-col md:flex-row ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
+    <div
+      ref={ref}
+      className={`relative flex flex-col md:flex-row ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+    >
       {/* dot */}
       <motion.div
         initial={{ scale: 0 }}
@@ -349,8 +419,10 @@ function Reasons() {
               whileHover={{ y: -8 }}
               className="group relative overflow-hidden rounded-3xl bg-card p-8 shadow-card transition-shadow hover:shadow-glow"
             >
-              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity group-hover:opacity-100"
-                style={{ background: "var(--gradient-rose)" }} />
+              <div
+                className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity group-hover:opacity-100"
+                style={{ background: "var(--gradient-rose)" }}
+              />
               <div className="relative">
                 <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl gradient-rose shadow-soft">
                   <r.icon className="h-6 w-6 text-primary-foreground" />
@@ -369,49 +441,57 @@ function Reasons() {
 /* ---------------------------------------------------------------- */
 /*  GALLERY                                                          */
 /* ---------------------------------------------------------------- */
-const galleryItems = Array.from({ length: 18 }, (_, i) => ({
-  id: i,
-  height: [220, 320, 280, 360, 240, 300][i % 6],
-  hue: 15 + (i * 17) % 80,
-}));
-
 function Gallery() {
+  const photos = useQuery(api.gallery.listPhotos);
   const [open, setOpen] = useState<number | null>(null);
+
   return (
     <section className="relative py-32" style={{ background: "var(--gradient-warm)" }}>
       <div className="mx-auto max-w-7xl px-6">
         <SectionTitle
           kicker="favorite moments"
           title="A little gallery of us"
-          subtitle="Click any photo to zoom in. (Replace with your real ones.)"
+          subtitle="Click any photo to zoom in."
         />
 
-        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
-          {galleryItems.map((g) => (
-            <motion.button
-              key={g.id}
-              onClick={() => setOpen(g.id)}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: (g.id % 6) * 0.05 }}
-              whileHover={{ scale: 1.02 }}
-              className="block w-full overflow-hidden rounded-2xl shadow-card"
-              style={{
-                height: g.height,
-                background: `linear-gradient(135deg, oklch(0.85 0.10 ${g.hue}), oklch(0.78 0.13 ${g.hue + 30}))`,
-              }}
-            >
-              <div className="flex h-full w-full items-end justify-start p-4">
-                <span className="rounded-full glass px-3 py-1 text-xs text-foreground/70">Photo {g.id + 1}</span>
-              </div>
-            </motion.button>
-          ))}
-        </div>
+        {photos === undefined ? (
+          /* Loading skeleton */
+          <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
+            {Array.from({ length: 17 }).map((_, i) => (
+              <div
+                key={i}
+                className="block w-full overflow-hidden rounded-2xl bg-primary/10 animate-pulse"
+                style={{ height: [220, 320, 280, 360, 240, 300][i % 6] }}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
+            {photos.map((g, i) => (
+              <motion.button
+                key={g._id}
+                onClick={() => setOpen(i)}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: (i % 6) * 0.05 }}
+                whileHover={{ scale: 1.02 }}
+                className="block w-full overflow-hidden rounded-2xl shadow-card"
+              >
+                <img
+                  src={g.url ?? undefined}
+                  alt={g.label}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </motion.button>
+            ))}
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
-        {open !== null && (
+        {open !== null && photos && photos[open] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -424,23 +504,20 @@ function Gallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative aspect-[4/3] w-full max-w-3xl overflow-hidden rounded-3xl"
-              style={{
-                background: `linear-gradient(135deg, oklch(0.85 0.10 ${galleryItems[open].hue}), oklch(0.72 0.15 ${galleryItems[open].hue + 30}))`,
-              }}
+              className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-black/90"
+              onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={(e) => { e.stopPropagation(); setOpen(null); }}
-                className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full glass text-foreground"
+                onClick={() => setOpen(null)}
+                className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full glass text-white"
               >
                 <X className="h-5 w-5" />
               </button>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Camera className="h-16 w-16 text-primary-foreground/60" />
-              </div>
-              <div className="absolute bottom-6 left-6 rounded-full glass px-4 py-2 text-sm">
-                Photo {open + 1} placeholder
-              </div>
+              <img
+                src={photos[open].url ?? undefined}
+                alt={photos[open].label}
+                className="w-full object-contain"
+              />
             </motion.div>
           </motion.div>
         )}
@@ -479,7 +556,10 @@ function BirthdayWish() {
         <div className="mx-auto mt-12 min-h-[12rem] max-w-2xl">
           <p className="font-script text-3xl leading-relaxed text-foreground/85 md:text-4xl">
             {text}
-            <span className="ml-1 inline-block w-0.5 bg-primary align-middle animate-blink" style={{ height: "0.9em" }} />
+            <span
+              className="ml-1 inline-block w-0.5 bg-primary align-middle animate-blink"
+              style={{ height: "0.9em" }}
+            />
           </p>
         </div>
       </div>
@@ -493,16 +573,25 @@ function BirthdayWish() {
 const facts = [
   { front: "🌙 Yah mat bolna 'Sone ja rahi hu'.", back: "(I already know the answer)" },
   { front: "👑 Ma Lady", back: "Started as My Lady,Ended with 'What is this ma lady?' 😂" },
-  { front: "👸 Queen Victoria", back: "Ma lady bola toh sach ma Queen Victoria jaisa harkat karna lagi." },
-  { front: "☕ Coffee Treaty", back: "Her: Stop sipping coffee. Me: 'Coffee is the only thing keeping me alive.'" },
+  {
+    front: "👸 Queen Victoria",
+    back: "Ma lady bola toh sach ma Queen Victoria jaisa harkat karna lagi.",
+  },
+  {
+    front: "☕ Coffee Treaty",
+    back: "Her: Stop sipping coffee. Me: 'Coffee is the only thing keeping me alive.'",
+  },
   { front: "🤍 Pagal.", back: "At this point, it's basically our second names." },
-  { front: "🎬 Movie Rule", back: "'Kuch bhi faltu movie nahi chahiye.' 'It should teach something.'" },
+  {
+    front: "🎬 Movie Rule",
+    back: "'Kuch bhi faltu movie nahi chahiye.' 'It should teach something.'",
+  },
   { front: "😴 Good Night...", back: "...which somehow always became another conversation." },
   { front: "📞 Call par aa jao.", back: "Typing was optional" },
   { front: "😂 Aavai kuch bhi.", back: "One of the oldest phrases in our chat." },
   { front: "👟 Samba Nahi Chahiye.", back: "The search lasted longer than the decision." },
   { front: "💬 Kkrh??", back: "Probably the most frequently asked question." },
-  { front: "🍫 KitKat Drink", back: "Who knew KitKat could become an entire conversation?" }
+  { front: "🍫 KitKat Drink", back: "Who knew KitKat could become an entire conversation?" },
 ];
 
 function FunFacts() {
@@ -515,7 +604,9 @@ function FunFacts() {
           subtitle="Tap a card. Some secrets are too good to be on the front."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {facts.map((f, i) => <FlipCard key={i} front={f.front} back={f.back} delay={i * 0.08} />)}
+          {facts.map((f, i) => (
+            <FlipCard key={i} front={f.front} back={f.back} delay={i * 0.08} />
+          ))}
         </div>
       </div>
     </section>
@@ -541,11 +632,11 @@ function FlipCard({ front, back, delay }: { front: string; back: string; delay: 
         <div className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl glass p-6 shadow-card [backface-visibility:hidden]">
           <Sparkles className="mb-3 h-6 w-6 text-primary" />
           <p className="font-display text-2xl">{front}</p>
-          <p className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">Tap to reveal</p>
+          <p className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">
+            Tap to reveal
+          </p>
         </div>
-        <div
-          className="absolute inset-0 flex items-center justify-center rounded-3xl gradient-rose p-6 text-center shadow-glow [backface-visibility:hidden] [transform:rotateY(180deg)]"
-        >
+        <div className="absolute inset-0 flex items-center justify-center rounded-3xl gradient-rose p-6 text-center shadow-glow [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <p className="font-script text-2xl leading-snug text-primary-foreground">{back}</p>
         </div>
       </motion.div>
@@ -557,10 +648,26 @@ function FlipCard({ front, back, delay }: { front: string; back: string; delay: 
 /*  FUTURE ADVENTURES                                                */
 /* ---------------------------------------------------------------- */
 const adventures = [
-  { icon: Plane, title: "Tokyo in spring", text: "Cherry blossoms, tiny coffee shops, getting lost on purpose." },
-  { icon: Mountain, title: "A real road trip", text: "Coast to coast, with terrible snacks and excellent playlists." },
-  { icon: Utensils, title: "That cooking class", text: "We've talked about it for two years. This is the year." },
-  { icon: BookOpen, title: "Start the book club", text: "Just us two. One book a month. Wine encouraged." },
+  {
+    icon: Plane,
+    title: "Tokyo in spring",
+    text: "Cherry blossoms, tiny coffee shops, getting lost on purpose.",
+  },
+  {
+    icon: Mountain,
+    title: "A real road trip",
+    text: "Coast to coast, with terrible snacks and excellent playlists.",
+  },
+  {
+    icon: Utensils,
+    title: "That cooking class",
+    text: "We've talked about it for two years. This is the year.",
+  },
+  {
+    icon: BookOpen,
+    title: "Start the book club",
+    text: "Just us two. One book a month. Wine encouraged.",
+  },
   { icon: MapPin, title: "A weekend, no plans", text: "Just a hotel, a map, and zero agendas." },
 ];
 
@@ -610,8 +717,14 @@ function Surprise() {
   const fire = () => {
     const colors = ["#e8a87c", "#c44569", "#f0d78c", "#ffb3c1", "#ff6b6b"];
     confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 }, colors });
-    setTimeout(() => confetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0 }, colors }), 200);
-    setTimeout(() => confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1 }, colors }), 400);
+    setTimeout(
+      () => confetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0 }, colors }),
+      200,
+    );
+    setTimeout(
+      () => confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1 }, colors }),
+      400,
+    );
   };
 
   const handleOpen = () => {
@@ -622,7 +735,11 @@ function Surprise() {
   return (
     <section className="relative py-32">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <SectionTitle kicker="psst..." title="A little surprise" subtitle="Go on. You know you want to." />
+        <SectionTitle
+          kicker="psst..."
+          title="A little surprise"
+          subtitle="Go on. You know you want to."
+        />
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -666,7 +783,8 @@ function Surprise() {
               <p className="font-script text-3xl text-primary">Surprise!</p>
               <h3 className="mt-2 text-3xl font-medium">Make a wish</h3>
               <p className="mt-4 text-muted-foreground">
-                You've made every ordinary day feel like a celebration. Today, the celebration is finally yours. Blow out the candles — I'm pretty sure they all come true.
+                You've made every ordinary day feel like a celebration. Today, the celebration is
+                finally yours. Blow out the candles — I'm pretty sure they all come true.
               </p>
 
               <button
@@ -699,12 +817,22 @@ function CakeIllustration() {
       <rect x="30" y="48" width="60" height="24" rx="4" fill="oklch(0.92 0.05 20)" />
       <rect x="40" y="30" width="40" height="20" rx="4" fill="url(#cake)" />
       {/* drips */}
-      <path d="M22 70 Q26 78 30 70 Q34 78 38 70 Q42 78 46 70 Q50 78 54 70 Q58 78 62 70 Q66 78 70 70 Q74 78 78 70 Q82 78 86 70 Q90 78 94 70 Q98 78 98 70" fill="oklch(0.92 0.05 20)" />
+      <path
+        d="M22 70 Q26 78 30 70 Q34 78 38 70 Q42 78 46 70 Q50 78 54 70 Q58 78 62 70 Q66 78 70 70 Q74 78 78 70 Q82 78 86 70 Q90 78 94 70 Q98 78 98 70"
+        fill="oklch(0.92 0.05 20)"
+      />
       {/* candle */}
       <rect x="58" y="14" width="4" height="16" fill="oklch(0.55 0.14 15)" />
       {/* flame */}
       <path d="M60 6 Q56 11 60 14 Q64 11 60 6" fill="oklch(0.85 0.18 70)">
-        <animateTransform attributeName="transform" type="scale" values="1;1.15;1" dur="1.2s" repeatCount="indefinite" additive="sum" />
+        <animateTransform
+          attributeName="transform"
+          type="scale"
+          values="1;1.15;1"
+          dur="1.2s"
+          repeatCount="indefinite"
+          additive="sum"
+        />
       </path>
     </svg>
   );
@@ -717,9 +845,13 @@ function FinalMessage() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-foreground text-background">
       <Stars count={70} />
-      <div className="absolute inset-0" style={{
-        background: "radial-gradient(ellipse at center, oklch(0.55 0.14 15 / 0.35), transparent 60%)",
-      }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, oklch(0.55 0.14 15 / 0.35), transparent 60%)",
+        }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -731,10 +863,13 @@ function FinalMessage() {
         <Heart className="mx-auto mb-8 h-10 w-10 text-primary animate-pulse-glow" />
         <p className="font-script text-3xl text-background/80">a final word</p>
         <h2 className="mt-4 font-display text-4xl font-light leading-tight md:text-6xl">
-          Thank you for being<br />part of my life.
+          Thank you for being
+          <br />
+          part of my life.
         </h2>
         <p className="mx-auto mt-8 max-w-lg text-base text-background/70 md:text-lg">
-          Some people make the world feel a little warmer just by being in it. You are one of them. Happy birthday, my favorite human.
+          Some people make the world feel a little warmer just by being in it. You are one of them.
+          Happy birthday, my favorite human.
         </p>
 
         <div className="mt-16 flex flex-col items-center gap-2">

@@ -8,13 +8,17 @@
  * @module
  */
 
+import type * as gallery from "../gallery.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  gallery: typeof gallery;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.
