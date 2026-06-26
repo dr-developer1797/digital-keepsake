@@ -667,7 +667,9 @@ const adventures = [
     title: "😂 Create enough inside jokes",
     text: "Just us two. To add another page to this website.",
   },
-  { icon: MapPin, title: "🚗 Go for a drive", text: "With no destination, just good music." },
+  { icon: MapPin,
+    title: "🚗 Go for a drive",
+    text: "With no destination, just good music." },
 ];
 
 function Future() {
