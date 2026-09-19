@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SoundtrackRouteImport } from './routes/soundtrack'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SoundtrackRoute = SoundtrackRouteImport.update({
+  id: '/soundtrack',
+  path: '/soundtrack',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/soundtrack': typeof SoundtrackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/soundtrack': typeof SoundtrackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/soundtrack': typeof SoundtrackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/soundtrack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/soundtrack'
+  id: '__root__' | '/' | '/soundtrack'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SoundtrackRoute: typeof SoundtrackRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/soundtrack': {
+      id: '/soundtrack'
+      path: '/soundtrack'
+      fullPath: '/soundtrack'
+      preLoaderRoute: typeof SoundtrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SoundtrackRoute: SoundtrackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

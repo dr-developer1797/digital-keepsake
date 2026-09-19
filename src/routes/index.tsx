@@ -8,7 +8,6 @@ import {
   Star,
   Cake,
   Gift,
-  Music,
   Coffee,
   Camera,
   Smile,
@@ -22,12 +21,14 @@ import {
   Mountain,
   Utensils,
   BookOpen,
-  Sun,
-  Moon,
   X,
   ChevronDown,
 } from "lucide-react";
 import { MemoryCardMaker } from "@/components/MemoryCardMaker";
+import { Particles } from "@/components/Particles";
+import { SectionTitle } from "@/components/SectionTitle";
+import { SoundtrackTeaser } from "@/components/SoundtrackTeaser";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
@@ -50,51 +51,8 @@ export const Route = createFileRoute("/")({
 });
 
 /* ---------------------------------------------------------------- */
-/*  THEME TOGGLE                                                     */
+/*  STARS (finale)                                                   */
 /* ---------------------------------------------------------------- */
-function useTheme() {
-  const [dark, setDark] = useState(false);
-  useEffect(() => {
-    const root = document.documentElement;
-    if (dark) root.classList.add("dark");
-    else root.classList.remove("dark");
-  }, [dark]);
-  return { dark, toggle: () => setDark((d) => !d) };
-}
-
-/* ---------------------------------------------------------------- */
-/*  FLOATING PARTICLES                                               */
-/* ---------------------------------------------------------------- */
-function Particles({ count = 24 }: { count?: number }) {
-  const particles = Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    size: Math.random() * 6 + 2,
-    delay: Math.random() * 8,
-    duration: Math.random() * 10 + 8,
-  }));
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className="absolute rounded-full bg-primary/30 animate-float-slow"
-          style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: p.size,
-            height: p.size,
-            animationDelay: `${p.delay}s`,
-            animationDuration: `${p.duration}s`,
-            filter: "blur(1px)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function Stars({ count = 60 }: { count?: number }) {
   const stars = Array.from({ length: count }, (_, i) => ({
     id: i,
@@ -119,35 +77,6 @@ function Stars({ count = 60 }: { count?: number }) {
         />
       ))}
     </div>
-  );
-}
-
-/* ---------------------------------------------------------------- */
-/*  REUSABLE SECTION WRAPPER                                         */
-/* ---------------------------------------------------------------- */
-function SectionTitle({
-  kicker,
-  title,
-  subtitle,
-}: {
-  kicker: string;
-  title: string;
-  subtitle?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mb-16 max-w-2xl text-center"
-    >
-      <p className="font-script text-2xl text-primary">{kicker}</p>
-      <h2 className="mt-2 text-4xl font-light leading-tight md:text-6xl">
-        <span className="gradient-text">{title}</span>
-      </h2>
-      {subtitle && <p className="mt-4 text-muted-foreground md:text-lg">{subtitle}</p>}
-    </motion.div>
   );
 }
 
@@ -442,7 +371,8 @@ function Reasons() {
 /*  GALLERY                                                          */
 /* ---------------------------------------------------------------- */
 function Gallery() {
-  const photos = useQuery(api.gallery.listPhotos);
+  const isServer = typeof window === "undefined";
+  const photos = useQuery(api.gallery.listPhotos, isServer ? "skip" : undefined);
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -888,16 +818,9 @@ function FinalMessage() {
 /*  PAGE                                                             */
 /* ---------------------------------------------------------------- */
 function BirthdayPage() {
-  const { dark, toggle } = useTheme();
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <button
-        onClick={toggle}
-        aria-label="Toggle theme"
-        className="fixed right-5 top-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full glass shadow-card transition-transform hover:scale-110"
-      >
-        {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-      </button>
+      <ThemeToggle />
 
       <Hero />
       <About />
@@ -906,6 +829,7 @@ function BirthdayPage() {
       <Gallery />
       <BirthdayWish />
       <FunFacts />
+      <SoundtrackTeaser />
       <Future />
       <Surprise />
       <MemoryCardMaker />

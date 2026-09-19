@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
+import { ThemeProvider } from "@/components/ThemeProvider";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -139,19 +140,13 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
-  if (typeof window === "undefined") {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <Outlet />
-      </QueryClientProvider>
-    );
-  }
-
   return (
     <ConvexProvider client={getConvexClient()}>
       <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <ThemeProvider>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </ThemeProvider>
       </QueryClientProvider>
     </ConvexProvider>
   );
